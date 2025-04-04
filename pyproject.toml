@@ -10,7 +10,7 @@ authors = [{ name = "HanByul Yang", email = "hanbyul.yang@gmail.com" }]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.7"
-dependencies = ["typer[all]", "chardet", "rich"]
+dependencies = ["typer", "chardet", "rich"]
 
 [project.scripts]
 utf8convert = "utf8convert.cli:main"
