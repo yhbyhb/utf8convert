@@ -7,11 +7,14 @@
 A command-line utility to recursively convert source files to UTF-8 encoding.
 
 Supports:
-- `.cpp`, `.h`, `.hpp` files by default
-- Any custom extensions via `--extensions`
-- Logging and summary reports (JSON and terminal)
-- Dry-run mode
-- Default and user-defined subdirectory exclusions
+- `.cpp`, `.h`, `.hpp` files by default  
+- Any custom extensions via `--extensions`  
+- Logging with timestamped filenames  
+- Dry-run mode  
+- Skip ASCII files (optional)  
+- JSON summary output (optional)  
+- Separate counts for intentionally skipped files and error cases  
+- Default and user-defined subdirectory exclusions  
 
 ## 📦 GitHub
 
@@ -40,7 +43,7 @@ utf8convert [DIRECTORY] [OPTIONS]
 ### Options:
 
 - `--dry-run`  
-  Preview files to convert without making changes.
+  Preview files to convert without modifying anything.
 
 - `--extensions [.ext1 .ext2 ...]`  
   List of file extensions to process (default: `.cpp .h .hpp`).
@@ -49,8 +52,22 @@ utf8convert [DIRECTORY] [OPTIONS]
   Relative paths of subdirectories to skip.  
   Defaults: `.git`, `.vs`, `vcpkg_installed`, and any dot-prefixed folders.
 
+- `--skip-ascii`  
+  Skip files detected with ASCII encoding (they're usually already compatible with UTF-8).
+
 - `--json-output PATH`  
-  Write a summary report as JSON to the specified path.
+  Write a summary report as JSON to the specified path (not printed in logs).
+
+---
+
+## 📊 Summary Breakdown
+
+The summary will show:
+- Total scanned
+- Already UTF-8
+- Converted or would-convert
+- Skipped (intentionally ignored, like ASCII)
+- Errors (files that failed to decode/convert)
 
 ---
 
@@ -76,6 +93,11 @@ utf8convert ./mycode --json-output utf8_summary.json
 utf8convert ./codebase --exclude-dirs build third_party .cache
 ```
 
+### ⚙️ Skip ASCII-encoded files
+```bash
+utf8convert ./legacy --skip-ascii
+```
+
 ---
 
 ## 🧪 Test Locally
@@ -84,4 +106,4 @@ utf8convert ./codebase --exclude-dirs build third_party .cache
 hatch run python -m utf8convert.cli ./your/code --dry-run
 ```
 
-Let me know if you want to contribute or need help automating PyPI publishing.
+> ⚠️ **Note**: This README and project structure were generated with the help of a large language model (LLM). Please review before publishing or deploying.
