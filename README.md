@@ -1,3 +1,5 @@
+> ⚠️ **Note**: This README and project structure were generated with the help of a large language model (LLM). Please review before publishing or deploying.
+
 [![PyPI version](https://img.shields.io/pypi/v/utf8convert.svg)](https://pypi.org/project/utf8convert/)
 
 # utf8convert
